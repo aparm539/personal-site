@@ -1,8 +1,12 @@
 
+
 import { Github } from 'lucide-react';
 import { Linkedin } from 'lucide-react';
 import SocialIconContainer from './components/social-icon-container';
-export default function HomePage() {
+import GithubGraph from './components/github-graph';
+import StravaActivities from './components/strava-activities';
+
+export default async function HomePage() {
   return (
     <div className="mx-auto max-w-4xl">
       <div className="flex flex-col mt-2 px-6 py-12 md:px-12 md:py-16">
@@ -22,10 +26,14 @@ export default function HomePage() {
         <h3> About </h3>
         <div className="text-wrap"> 
           <p className=" mt-1 leading-normal">
-            I learned how to read so I could understand flash games after my sisters became tired of reading dialog boxes for me. Ever since then I&apos;ve been in love with technology and the experiences it can create. I primarly make things in TypeScript. 
+            I&apos;m never sure what I should put on these things. I primarly make things in TypeScript. 
           </p>
           
         </div>
+
+        <GithubGraph />
+        
+        <StravaActivities />
       </div>
  
   </div>

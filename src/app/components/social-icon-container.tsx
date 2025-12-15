@@ -1,5 +1,5 @@
-import { Children } from "react"
-export default function SocialIconContainer({children}){ 
+import { Children, type ReactNode } from "react"
+export default function SocialIconContainer({children}: {children: ReactNode}){ 
 
 
     return (
