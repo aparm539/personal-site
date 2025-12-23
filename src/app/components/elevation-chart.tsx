@@ -2,20 +2,7 @@
 
 import { LineChart, Line, ResponsiveContainer, YAxis, XAxis, Tooltip } from "recharts";
 import type { StravaActivity } from "../types/strava";
-
-function formatDistance(meters: number): string {
-  const km = meters / 1000;
-  return `${km.toFixed(1)} km`;
-}
-
-function formatElevation(meters: number): string {
-  return `${Math.round(meters)} m`;
-}
-
-function formatTime(seconds: number): string {
-  const hours = Math.round(seconds / 3600);
-  return `${hours.toLocaleString()} hrs`;
-}
+import {formatDistance, formatElevation, formatTime} from '~/app/utils/strava'
 
 export default function ElevationChart({
   activities,
@@ -42,15 +29,15 @@ export default function ElevationChart({
   });
 
   return (
-    <div className="mt-4">
+    <div className="mt-4 animate-elevation">
       <div className="mb-3">
-        <div className="text-sm text-themetext/80">
+        <div className="text-sm text-themetext">
           <span className="font-semibold">{formatDistance(totalDistance)}</span> total distance • {" "}
           <span className="font-semibold">{formatElevation(totalElevation)}</span> total elevation • {" "}
           <span className="font-semibold">{formatTime(totalElapsedTime)}</span> total time • {" "}
-          <span className="text-themetext/60">Currently injured</span>
+          <span className="text-themetext">Currently injured</span>
         </div>
-      </div>
+      </div> 
       <ResponsiveContainer width="100%" height={96}>
         <LineChart data={chartData} margin={{ top: 5, right: 5, left: 5, bottom: 5 }}>
           <XAxis dataKey="index" hide />
@@ -60,7 +47,7 @@ export default function ElevationChart({
               const data = (payload?.[0] as { payload: typeof chartData[0] })?.payload;
               if (active && data) {
                 return (
-                  <div className="bg-black/90 border border-gray-700 px-3 py-2 rounded text-xs">
+                  <div className="bg-themebg border border-themetext px-3 py-2 rounded text-xs">
                     <p>{formatDistance(data.distance)}</p>
                   </div>
                 );

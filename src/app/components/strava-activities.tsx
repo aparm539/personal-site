@@ -1,4 +1,4 @@
-import GetStravaActivities from "~/utils/strava";
+import GetStravaActivities from "~/app/utils/strava";
 import ElevationChart from "./elevation-chart";
 
 export default async function StravaActivities() {
@@ -22,7 +22,7 @@ export default async function StravaActivities() {
 
     return (
       <div className="mt-8">
-        <h3>Running Stats</h3>
+        <h3 id="running">Running Stats</h3>
         <ElevationChart
           activities={activities}
           totalDistance={totalDistance}

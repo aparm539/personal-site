@@ -1,4 +1,4 @@
-import GetGithubInfo from "~/utils/github-graph";
+import GetGithubInfo from "~/app/utils/github-graph";
 import { type ContributionLevel, type ContributionWeek, type ColorTheme } from "../types/github-graph";
 import { MONTH_LABELS } from "~/app/types/constants"
 
@@ -105,15 +105,15 @@ export default async function GithubGraph({
   const theme: ColorTheme = resolvedTheme ?? COLOR_THEMES.github!;
   
   return (
-    <div className="my-6">
-      <div className="mb-3 text-sm text-themetext/80">
+    <div className="my-6 animate-elevation">
+      <div className="mb-3 text-sm text-themetext">
         <span className="font-semibold">{totalContributions.toLocaleString()}</span>{" "}
         contributions in the last year
       </div>
 
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto max-w-full">
         <div className="inline-block">
-          <div className="mb-6 flex text-xs text-themetext/60">
+          <div className="mb-6 flex text-xs text-themetext">
             <div className="w-8" />
             <div className="relative flex">
               {monthLabels.map(({ month, index }) => (
@@ -129,7 +129,7 @@ export default async function GithubGraph({
           </div>
 
           <div className="flex gap-0.5">
-            <div className="flex w-7 flex-col justify-around pr-1 text-xs text-themetext/60">
+            <div className="flex w-7 flex-col justify-around pr-1 text-xs text-themetext">
               <span>Mon</span>
               <span>Wed</span>
               <span>Fri</span>
@@ -156,7 +156,7 @@ export default async function GithubGraph({
             </div>
           </div>
 
-          <div className="mt-2 flex items-center justify-end gap-1 text-xs text-themetext/60">
+          <div className="mt-2 flex items-center justify-start gap-1 text-xs text-themetext">
             <span>Less</span>
             <div
               className="h-2.5 w-2.5 rounded-xs"

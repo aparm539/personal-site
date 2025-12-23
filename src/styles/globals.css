@@ -4,7 +4,7 @@
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --color-themebg: #282828;
-  --color-themetext: #ebdbb2;
+  --color-themetext: #fbf1c7;
 }
 
 @keyframes github-appear {
@@ -30,7 +30,30 @@
 .animate-github-fill {
   opacity: 0;
   background-color: var(--level0-color);
+}
+
+[data-in-view="true"] .animate-github-fill {
   animation: 
     github-appear 0.3s ease-out forwards var(--appear-delay),
     github-colorize 0.4s ease-out forwards var(--color-delay);
+}
+
+@keyframes elevation-appear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+[data-in-view="true"] .animate-elevation {
+  animation: elevation-appear 0.6s ease-out forwards;
+}
+
+.animate-elevation {
+  opacity: 0;
+  transform: translateY(20px);
 }

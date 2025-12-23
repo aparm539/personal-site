@@ -48,7 +48,7 @@ export default async function getStravaActivities(): Promise<StravaStats> {
 
     const response = await fetch(endpoint, {
       method: "GET",
-      next: { revalidate: 86400 }, // 1 hour
+      next: { revalidate: 86400 }, // 1 day
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -82,4 +82,18 @@ export default async function getStravaActivities(): Promise<StravaStats> {
     console.error(`Error in getStravaActivities: `, error);
     throw error;
   }
+}
+
+export function formatDistance(meters: number): string {
+  const km = meters / 1000;
+  return `${km.toFixed(1)} km`;
+}
+
+export function formatElevation(meters: number): string {
+  return `${Math.round(meters)} m`;
+}
+
+export function formatTime(seconds: number): string {
+  const hours = Math.round(seconds / 3600);
+  return `${hours.toLocaleString()} hrs`;
 }
