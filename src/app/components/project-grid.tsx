@@ -3,7 +3,7 @@ import ProjectCard from './project-card';
 
 const projects: Array<Project> = [
   {
-    name: "MRU Hacks 2025",
+    name: "MRUHacks 2025",
     tags: ["TypeScript", "Next.js", "Hackathon"],
     description: "Official website and participant management system for MRUHacks 2025.",
     link: "https://github.com/albertaspsc/mruhacks2025"
