@@ -3,13 +3,19 @@
 import { Github } from 'lucide-react';
 import { Linkedin } from 'lucide-react';
 import SocialIconContainer from './components/social-icon-container';
-import GithubGraph from './components/github-graph';
-import StravaActivities from './components/strava-activities';
 import Script from 'next/script';
+import dynamic from 'next/dynamic';
+
+const GithubGraph = dynamic(() => import('./components/github-graph'), {
+  loading: () => <div className="mt-8"><p>Loading contribution graph...</p></div>,
+});
+
+const StravaActivities = dynamic(() => import('./components/strava-activities'), {
+  loading: () => <div className="mt-8"><p>Loading running stats...</p></div>,
+});
 import Highlight from './components/highlight';
 import ProjectGrid from './components/project-grid';
 import AnimationWrapper from './components/animation-wrapper';
-
 export default async function HomePage() {
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -63,7 +69,6 @@ export default async function HomePage() {
           <p>You&apos;ll find some of my <Highlight href="#projects" className="bg-[#8ec07c]">previous work</Highlight> on this site, but this is also a place for me to experiment with different ideas. A sandbox, if you will.
            As such, it remains a living document, prone to changes and regressions.</p>
         </div>
-        
         <AnimationWrapper>
           <StravaActivities />
         </AnimationWrapper>

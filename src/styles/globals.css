@@ -57,3 +57,32 @@
   opacity: 0;
   transform: translateY(20px);
 }
+
+.elevation-chart .ct-line {
+  stroke: #fbf1c7 !important;
+  stroke-width: 2px !important;
+}
+
+.elevation-chart .ct-series-a .ct-point {
+  stroke: #fbf1c7 !important;
+  fill: #fbf1c7 !important;
+}
+
+.elevation-chart .ct-label {
+  color: #fbf1c7 !important;
+  font-size: 12px !important;
+}
+
+.elevation-chart .ct-grid {
+  stroke: rgba(251, 241, 199, 0.1) !important;
+}
+
+.elevation-chart .ct-tooltip {
+  background-color: #282828 !important;
+  color: #fbf1c7 !important;
+  border: 1px solid #fbf1c7 !important;
+}
+
+.elevation-chart svg .ct-line {
+  stroke: #fbf1c7 !important;
+}

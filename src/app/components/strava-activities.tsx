@@ -1,5 +1,8 @@
 import GetStravaActivities from "~/app/utils/strava";
-import ElevationChart from "./elevation-chart";
+import LapsVisualization from "./lap-path-generator";
+
+// Soccer field perimeter in meters (105m × 68m)
+const FIELD_PERIMETER_M = 2 * (105 + 68); // 346m
 
 export default async function StravaActivities() {
   try {
@@ -12,23 +15,13 @@ export default async function StravaActivities() {
       return sum + activity.distance;
     }, 0);
 
-    const totalElevation = activities.reduce((sum, activity) => {
-      return sum + activity.total_elevation_gain;
-    }, 0);
-
-    const totalElapsedTime = activities.reduce((sum, activity) => {
-      return sum + activity.elapsed_time;
-    }, 0);
+    // Calculate laps around soccer field (distance is in meters)
+    const laps = totalDistance / FIELD_PERIMETER_M;
 
     return (
       <div className="mt-8">
         <h3 id="running">Running Stats</h3>
-        <ElevationChart
-          activities={activities}
-          totalDistance={totalDistance}
-          totalElevation={totalElevation}
-          totalElapsedTime={totalElapsedTime}
-        />
+        <LapsVisualization laps={laps} className="mx-auto" />
       </div>
     );
   } catch (error) {
