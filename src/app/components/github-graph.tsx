@@ -1,5 +1,5 @@
 import GetGithubInfo from "~/app/utils/github-graph";
-import { type ContributionLevel, type ContributionWeek } from "../types/github-graph";
+import {type ContributionWeek } from "../types/github-graph";
 import { MONTH_LABELS } from "~/app/types/constants"
 
 // Direct map from GitHub contribution hex colors to CSS variables
