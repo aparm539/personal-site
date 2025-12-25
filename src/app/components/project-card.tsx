@@ -4,13 +4,13 @@ import { Github } from 'lucide-react';
 
 export default function ProjectCard(project:Project){ 
     return ( 
-        <div className="flex flex-col rounded border-2 border-themetext p-4 md:max-w-lg">
+        <div className="flex flex-col rounded border-2 border-(--level4-color) p-4 md:max-w-lg">
             <div className="flex items-start justify-between gap-3 mb-3">
                 <div className="flex-1">
                     <h4 className="text-lg font-semibold">{project.name}</h4>
                     <div className="flex flex-wrap gap-1 mt-2"> 
                         {project.tags.map((item)=> 
-                            <Highlight key={item} className="bg-[#fe8019] text-xs">{item}</Highlight>
+                            <Highlight key={item} className="bg-(--level4-color) text-xs">{item}</Highlight>
                         )}
                     </div>
                 </div>

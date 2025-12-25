@@ -2,6 +2,7 @@ import "~/styles/globals.css";
 
 import { type Metadata } from "next";
 import Header from "./components/header";
+import { ThemeProvider } from "./components/theme-provider";
 
 export const metadata: Metadata = {
   title: 'Sunny Parmar | Full-Stack Developer',
@@ -24,10 +25,36 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className="font-mono bg-themebg text-themetext">
+    <html lang="en" className="font-mono bg-themebg text-themetext" suppressHydrationWarning>
+      <head>
+        {/* Does not load in time if the next.js Script tag is used, causing a flash of the wrong style. */}
+<script dangerouslySetInnerHTML={{
+  __html: `(function() {
+        try {
+          const savedMode = localStorage.getItem('theme-mode');
+          const savedTheme = localStorage.getItem('theme-variant');
+
+          if (savedMode) {
+            document.documentElement.setAttribute('data-mode', savedMode);
+          } else {
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            document.documentElement.setAttribute('data-mode', prefersDark ? 'dark' : 'light');
+          }
+
+          if (savedTheme) {
+            document.documentElement.setAttribute('data-theme', savedTheme);
+          } else {
+            document.documentElement.setAttribute('data-theme', 'gruvbox');
+          }
+        } catch (e) {}
+  })();`
+}}></script>
+      </head>
       <body>
-        <Header />
-        {children}
+        <ThemeProvider>
+          <Header />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

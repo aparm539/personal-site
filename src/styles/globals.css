@@ -3,8 +3,149 @@
 @theme {
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --color-themebg: #282828;
-  --color-themetext: #fbf1c7;
+  --color-themebg: var(--bg);
+  --color-themebg-secondary: var(--bg-secondary);
+  --color-themetext: var(--text);
+  --color-themetext-muted: var(--text-muted);
+  --color-highlight-orange: var(--highlight-orange);
+  --color-highlight-green: var(--highlight-green);
+  --color-highlight-red: var(--highlight-red);
+  --color-highlight-yellow: var(--highlight-yellow);
+  --color-highlight-blue: var(--highlight-blue);
+  --color-highlight-purple: var(--highlight-purple);
+}
+
+:root {
+  /* positive for dark (lighten secondary), negative for light (darken secondary) */
+  --dir: 1;
+  
+  --bg: var(--base-bg);
+  --bg-secondary: oklch(from var(--base-bg) calc(l + 0.05 * var(--dir)) calc(c + 0.01) h);
+  --text: var(--base-text);
+  --text-muted: oklch(from var(--base-text) calc(l - 0.15 * var(--dir)) calc(c * 0.8) h);
+  
+  --level0-offset: 0.05;
+  --level0-color: oklch(from var(--base-bg) calc(l + var(--level0-offset) * var(--dir)) calc(c + 0.01) h);
+  --level1-color: oklch(from var(--base-accent) calc(l - 0.1) c h);
+  --level2-color: var(--base-accent);
+  --level3-color: oklch(from var(--base-accent) calc(l + 0.1) c h);
+  --level4-color: var(--base-text);
+  
+  --hl-hue-shift: 0deg;
+  --hl-light-adjust: 0.4;
+
+  --highlight-orange: color-mix(in oklch, oklch(from var(--base-accent) calc(l + var(--hl-light-adjust)) c calc(h + var(--h-orange, 0))) 85%, white 15%);
+  --highlight-green:  color-mix(in oklch, oklch(from var(--base-accent) calc(l + var(--hl-light-adjust)) c calc(h + var(--h-green, 0))) 85%, white 15%);
+  --highlight-red:    color-mix(in oklch, oklch(from var(--base-accent) calc(l + var(--hl-light-adjust)) c calc(h + var(--h-red, 0))) 85%, white 15%);
+  --highlight-yellow: color-mix(in oklch, oklch(from var(--base-accent) calc(l + var(--hl-light-adjust)) c calc(h + var(--h-yellow, 0))) 85%, white 15%);
+  --highlight-blue:   color-mix(in oklch, oklch(from var(--base-accent) calc(l + var(--hl-light-adjust)) c calc(h + var(--h-blue, 0))) 85%, white 15%);
+  --highlight-purple: color-mix(in oklch, oklch(from var(--base-accent) calc(l + var(--hl-light-adjust)) c calc(h + var(--h-purple, 0))) 85%, white 15%);
+}
+
+
+[data-mode="light"] {
+  --dir: -1;
+  --hl-light-adjust: 0.04;
+  
+  --highlight-orange: color-mix(in oklch, oklch(from var(--base-accent) calc(l - var(--hl-light-adjust)) c calc(h + var(--h-orange, 0))) 85%, black 15%);
+  --highlight-green:  color-mix(in oklch, oklch(from var(--base-accent) calc(l - var(--hl-light-adjust)) c calc(h + var(--h-green, 0))) 85%, black 15%);
+  --highlight-red:    color-mix(in oklch, oklch(from var(--base-accent) calc(l - var(--hl-light-adjust)) c calc(h + var(--h-red, 0))) 85%, black 15%);
+  --highlight-yellow: color-mix(in oklch, oklch(from var(--base-accent) calc(l - var(--hl-light-adjust)) c calc(h + var(--h-yellow, 0))) 85%, black 15%);
+  --highlight-blue:   color-mix(in oklch, oklch(from var(--base-accent) calc(l - var(--hl-light-adjust)) c calc(h + var(--h-blue, 0))) 85%, black 15%);
+  --highlight-purple: color-mix(in oklch, oklch(from var(--base-accent) calc(l - var(--hl-light-adjust)) c calc(h + var(--h-purple, 0))) 85%, black 15%);
+  
+
+  --level1-color: var(--base-accent);
+  --level2-color: oklch(from var(--base-accent) calc(l - 0.1) c h);
+  --level3-color: oklch(from var(--base-accent) calc(l - 0.2) c h);
+  --level4-color: oklch(from var(--base-accent) calc(l - 0.3) c h);
+}
+
+[data-theme="gruvbox"]{
+  --base-bg: #282828;
+  --base-text: #fbf1c7;
+  --base-accent: #8ec07c;
+  
+  --highlight-orange: #fe8019;
+  --highlight-green: #b8bb26;
+  --highlight-red: #fb4934;
+  --highlight-yellow: #fabd2f;
+  --highlight-blue: #83a598;
+  --highlight-purple: #d3869b;
+}
+
+[data-theme="gruvbox"][data-mode="light"],
+[data-mode="light"]:not([data-theme]) {
+  --base-bg: #fbf1c7;
+  --base-text: #282828;
+  --base-accent: #b8bb26;
+  
+  --highlight-orange: #fe8019;
+  --highlight-green: #b8bb26;
+  --highlight-red: #fb4934;
+  --highlight-yellow: #fabd2f;
+  --highlight-blue: #83a598;
+  --highlight-purple: #d3869b;
+}
+
+[data-theme="purple"] {
+  --base-bg: #161315;
+  --base-text: #dfcdd9;
+  --base-accent: #4a283e;
+  --level0-offset: 0.12;
+  
+  --h-orange: -60;
+  --h-green: 90;
+  --h-red: -30;
+  --h-yellow: -90;
+  --h-blue: 60;
+  --h-purple: 0;
+}
+
+[data-theme="purple"][data-mode="light"] {
+  --base-bg: #dfcdd9;
+  --base-text: #161315;
+  --base-accent: #9b6b9b;
+}
+
+[data-theme="blue"] {
+  --base-bg: #131720;
+  --base-text: #d6e5fb;
+  --base-accent: #6b9bd1;
+  --level0-offset: 0.12;
+  
+  --h-orange: -60;
+  --h-green: 90;
+  --h-red: -30;
+  --h-yellow: -90;
+  --h-blue: 0;
+  --h-purple: -120;
+}
+
+[data-theme="blue"][data-mode="light"] {
+  --base-bg: #d6e5fb;
+  --base-text: #131720;
+  --base-accent: #4a7ab5;
+}
+
+[data-theme="red"] {
+  --base-bg: #1a1010;
+  --base-text: #ff4733;
+  --base-accent: #b90000;
+  --level0-offset: 0.12;
+  
+  --h-orange: 30;
+  --h-green: 120;
+  --h-red: 0;
+  --h-yellow: 60;
+  --h-blue: 180;
+  --h-purple: -30;
+}
+
+[data-theme="red"][data-mode="light"] {
+  --base-bg: #ffd6d6;
+  --base-text: #1a1010;
+  --base-accent: #b90000;
 }
 
 @keyframes github-appear {

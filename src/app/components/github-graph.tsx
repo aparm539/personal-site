@@ -1,68 +1,23 @@
 import GetGithubInfo from "~/app/utils/github-graph";
-import { type ContributionLevel, type ContributionWeek, type ColorTheme } from "../types/github-graph";
+import { type ContributionLevel, type ContributionWeek } from "../types/github-graph";
 import { MONTH_LABELS } from "~/app/types/constants"
 
-// GitHub's default colors mapped to levels
-const GITHUB_COLOR_TO_LEVEL: Record<string, ContributionLevel> = {
-  "#ebedf0": 0, // Light mode - no contributions
-  "#9be9a8": 1, // Light mode - low
-  "#40c463": 2, // Light mode - medium-low
-  "#30a14e": 3, // Light mode - medium-high
-  "#216e39": 4, // Light mode - high
-  "#161b22": 0, // Dark mode - no contributions
-  "#0e4429": 1, // Dark mode - low
-  "#006d32": 2, // Dark mode - medium-low
-  "#26a641": 3, // Dark mode - medium-high
-  "#39d353": 4, // Dark mode - high
+// Direct map from GitHub contribution hex colors to CSS variables
+const GITHUB_COLOR_TO_CSS: Record<string, string> = {
+  "#ebedf0": 'var(--level0-color)',
+  "#9be9a8": 'var(--level1-color)',
+  "#40c463": 'var(--level2-color)',
+  "#30a14e": 'var(--level3-color)',
+  "#216e39": 'var(--level4-color)',
+  "#161b22": 'var(--level0-color)',
+  "#0e4429": 'var(--level1-color)',
+  "#006d32": 'var(--level2-color)',
+  "#26a641": 'var(--level3-color)',
+  "#39d353": 'var(--level4-color)',
 };
 
-
-const COLOR_THEMES: Record<string, ColorTheme> = {
-  github: {
-    level0: "#161b22",
-    level1: "#0e4429",
-    level2: "#006d32",
-    level3: "#26a641",
-    level4: "#39d353",
-  },
-  gruvbox: {
-    level0: "#3c3836", 
-    level1: "#8ec07c", 
-    level2: "#689d6a", 
-    level3: "#427b58", 
-    level4: "#b8bb26", 
-  },
-  custom: { 
-    level0: "#3c3836", 
-    level1: "#0e4429",
-    level2: "#006d32",
-    level3: "#26a641",
-    level4: "#39d353",
-
-  }
-};
-
-function getContributionLevel(githubColor: string): ContributionLevel {
-  const normalizedColor = githubColor.toLowerCase();
-  return GITHUB_COLOR_TO_LEVEL[normalizedColor] ?? 0;
-}
-
-function getMappedColor(githubColor: string, theme: ColorTheme): string {
-  const level = getContributionLevel(githubColor);
-  switch (level) {
-    case 0:
-      return theme.level0;
-    case 1:
-      return theme.level1;
-    case 2:
-      return theme.level2;
-    case 3:
-      return theme.level3;
-    case 4:
-      return theme.level4;
-    default:
-      return theme.level0;
-  }
+function getMappedColor(githubColor: string): string {
+  return GITHUB_COLOR_TO_CSS[githubColor.toLowerCase()] ?? 'var(--level0-color)';
 }
 
 
@@ -86,23 +41,13 @@ function getMonthLabels(weeks: ContributionWeek[]) {
   return labels;
 }
 
-interface GithubGraphProps {
-  colorTheme?: keyof typeof COLOR_THEMES | ColorTheme;
-}
 
-export default async function GithubGraph({
-  colorTheme = "custom",
-}: GithubGraphProps) {
+export default async function GithubGraph() {
     const response = await GetGithubInfo()
   const calendar =
     response.data.user.contributionsCollection.contributionCalendar;
   const { totalContributions, weeks } = calendar;
   const monthLabels = getMonthLabels(weeks);
-
-  const resolvedTheme =
-    typeof colorTheme === "string" ? COLOR_THEMES[colorTheme] : colorTheme;
-    
-  const theme: ColorTheme = resolvedTheme ?? COLOR_THEMES.github!;
   
   return (
     <div className="my-6 animate-elevation">
@@ -143,8 +88,7 @@ export default async function GithubGraph({
                       key={`${weekIndex}-${dayIndex}`}
                       className="h-2.5 w-2.5 rounded-xs transition-transform hover:scale-125 animate-github-fill"
                       style={{ 
-                        '--actual-color': getMappedColor(day.color, theme),
-                        '--level0-color': theme.level0,
+                        '--actual-color': getMappedColor(day.color),
                         '--appear-delay': `${weekIndex * 15}ms`,
                         '--color-delay': `${weekIndex * 25 + 800}ms`
                       } as React.CSSProperties}
@@ -160,23 +104,23 @@ export default async function GithubGraph({
             <span>Less</span>
             <div
               className="h-2.5 w-2.5 rounded-xs"
-              style={{ backgroundColor: theme.level0 }}
+              style={{ backgroundColor: 'var(--level0-color)' }}
             />
             <div
               className="h-2.5 w-2.5 rounded-xs"
-              style={{ backgroundColor: theme.level1 }}
+              style={{ backgroundColor: 'var(--level1-color)' }}
             />
             <div
               className="h-2.5 w-2.5 rounded-xs"
-              style={{ backgroundColor: theme.level2 }}
+              style={{ backgroundColor: 'var(--level2-color)' }}
             />
             <div
               className="h-2.5 w-2.5 rounded-xs"
-              style={{ backgroundColor: theme.level3 }}
+              style={{ backgroundColor: 'var(--level3-color)' }}
             />
             <div
               className="h-2.5 w-2.5 rounded-xs"
-              style={{ backgroundColor: theme.level4 }}
+              style={{ backgroundColor: 'var(--level4-color)' }}
             />
             <span>More</span>
           </div>
