@@ -1,14 +1,14 @@
-'use client';
+'use client'
 
-import { useInView } from '~/app/hooks/useInView';
-import { type ReactNode } from 'react';
+import type { ReactNode } from 'react'
+import { useInView } from '~/app/hooks/useInView'
 
 export default function AnimationWrapper({ children }: { children: ReactNode }) {
-  const { ref, isInView } = useInView();
+  const { ref, isInView } = useInView()
 
   return (
-    <div ref={ref} data-in-view={isInView} className='overflow-hidden'>
+    <div ref={ref} data-in-view={isInView} className="overflow-hidden">
       {children}
     </div>
-  );
+  )
 }

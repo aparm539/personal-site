@@ -1,9 +1,9 @@
-import { type ReactNode } from 'react';
+import type { ReactNode } from 'react'
 
 interface HighlightProps {
-  children: ReactNode;
-  className?: string;
-  href?: string;
+  children: ReactNode
+  className?: string
+  href?: string
 }
 
 export default function Highlight({ children, className = '', href }: HighlightProps) {
@@ -13,15 +13,15 @@ export default function Highlight({ children, className = '', href }: HighlightP
     >
       {children}
     </span>
-  );
+  )
 
   if (href) {
     return (
       <a href={href} className="hover:opacity-70 transition-opacity">
         {content}
       </a>
-    );
+    )
   }
 
-  return content;
+  return content
 }
