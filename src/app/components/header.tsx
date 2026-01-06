@@ -56,7 +56,7 @@ export default function Header() {
 
   return (
     <div className="fixed w-full sm:w-fit sm:top-4 sm:left-1/2 sm:-translate-x-1/2 z-50">
-      <div className="bg-themetext sm:rounded-full px-2 py-1 flex items-center gap-2">
+      <div className="bg-themetext sm:rounded-full px-2 py-0 flex items-center gap-2">
         <nav ref={navRef} className="relative grid grid-cols-3 items-center grow">
           <div
             className="absolute z-0 bg-themebg rounded-full transition-all duration-300 ease-out h-7"
@@ -73,7 +73,7 @@ export default function Header() {
               href={`/#${id}`}
               scroll={false}
               onClick={handleClick(id)}
-              className={`text-sm font-medium transition-colors w-full text-center py-1 px-2 rounded-full relative z-10 ${
+              className={`text-sm font-medium transition-colors w-full text-center py-[3px] px-2 rounded-full relative z-10 ${
                 activeSection === id
                   ? 'text-themetext'
                   : 'text-themebg hover:text-themebg/70'
