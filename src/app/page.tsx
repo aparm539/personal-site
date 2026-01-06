@@ -49,6 +49,7 @@ export default async function HomePage() {
           <p>
             I&apos;m Sunny, a Computer Information Systems student at Mount Royal University (MRU) and living being since 2001.
             I&apos;m currently
+            {' '}
             <Highlight href="#" className="bg-highlight-orange">looking for exciting opportunities</Highlight>
             {' '}
             to work in an internship or new grad role.
@@ -57,20 +58,25 @@ export default async function HomePage() {
           <p>
             School has never been my thing, so I usually have a few other things on the go to keep me busy.
             I could be descibed as a
+            {' '}
             <Highlight href="https://devpost.com/aparm539" className="bg-highlight-green">hackathon enjoyer</Highlight>
             ; I&apos;m currently the President of
+            {' '}
             <Highlight href="https://mruhacks.ca/" className="bg-highlight-red">MRUHacks</Highlight>
             , MRU&apos;s very own, 100% student-run hackathon.
             I&apos;ve recently started learning
+            {' '}
             <Highlight href="#projects" className="bg-highlight-yellow">Typescript</Highlight>
             , and it has become my tool of choice for development projects.
           </p>
           <br></br>
           <p>
             Outside of my &quot;professional&quot; life, you can find me
+            {' '}
             <Highlight href="#running" className="bg-highlight-blue">running</Highlight>
             , although I am dealing with some mysterious knee pain.
             I&apos;ve also recently picked up
+            {' '}
             <Highlight href="https://www.chess.com/member/notcloudyjustsunny" className="bg-highlight-purple">chess</Highlight>
             , and I might be the worst player in the history of the game.
             If you need a confidence boost, I&apos;m always happy to help.
@@ -79,6 +85,7 @@ export default async function HomePage() {
           <br></br>
           <p>
             You&apos;ll find some of my
+            {' '}
             <Highlight href="#projects" className="bg-highlight-green">previous work</Highlight>
             {' '}
             on this site, but this is also a place for me to experiment with different ideas. A sandbox, if you will.
