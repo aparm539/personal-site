@@ -27,7 +27,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="font-mono bg-themebg text-themetext" suppressHydrationWarning>
       <head>
-        {/* Does not load in time if the next.js Script tag is used, causing a flash of the wrong style. */}
+        {/*
+        This prevents a flash of the wrong color if you are visting the site after having set a light/dark +
+        Theme preference. Does not load in time if the next.js Script tag is used, causing a flash of the wrong style.
+        */}
         <script dangerouslySetInnerHTML={{
           __html: `(function() {
         try {

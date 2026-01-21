@@ -36,9 +36,10 @@ export default async function StravaActivities() {
     console.error('Failed to load Strava activities:', error)
     return (
       <div className="mt-8">
-        <h2 className="text-2xl font-semibold">Recent Activities</h2>
-        <p className="mt-4 text-gray-400">
-          Unable to load activities. Please check your Strava API token.
+        <h2 className="text-2xl font-semibold">Running Stats</h2>
+        <p className="mt-4">
+          There should be a graph here with some of my running stats.
+          I'd love to blame the strava api, but it is probably my fault.
         </p>
       </div>
     )

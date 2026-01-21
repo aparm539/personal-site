@@ -50,13 +50,13 @@ export default async function HomePage() {
             I&apos;m Sunny, a Computer Information Systems student at Mount Royal University (MRU) and living being since 2001.
             I&apos;m currently
             {' '}
-            <Highlight href="#" className="bg-highlight-orange">looking for exciting opportunities</Highlight>
+            <Highlight href="https://www.linkedin.com/in/sunny-parmar-yyc" className="bg-highlight-orange">looking for exciting opportunities</Highlight>
             {' '}
-            to work in an internship or new grad role.
+            to work in a new grad role.
           </p>
           <br></br>
           <p>
-            School has never been my thing, so I usually have a few other things on the go to keep me busy.
+            I've always struggled to learn from lectures, so I usually have a few projects on the go to keep me busy and help me learn.
             I could be descibed as a
             {' '}
             <Highlight href="https://devpost.com/aparm539" className="bg-highlight-green">hackathon enjoyer</Highlight>

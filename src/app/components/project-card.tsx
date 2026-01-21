@@ -4,7 +4,7 @@ import Highlight from './highlight'
 
 export default function ProjectCard(project: Project) {
   return (
-    <div className="flex flex-col rounded border-2 border-(--level4-color) p-4 md:max-w-lg">
+    <div className="flex flex-col rounded border-2 border-(--level4-color) p-4 md:w-full">
       <div className="flex items-start justify-between gap-3 mb-3">
         <div className="flex-1">
           <h4 className="text-lg font-semibold">{project.name}</h4>
